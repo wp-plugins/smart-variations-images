@@ -1,0 +1,41 @@
+=== Plugin Name ===
+Donate link: http://www.rosendo.pt/
+Tags: WooCommerce, images variations, gallery
+Requires at least: 3.0.1
+Tested up to: 3.4
+Stable tag: 0.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This is a WooCommerce extension plugin, that allows the user to add any number of images to the product images gallery and be used as variable product variations images in a very simple and quick way, without having to insert images p/variation.
+
+== Description ==
+
+By default WooCommerce will only swap the main variation image when you select a product variation, not the gallery images below it. 
+
+This extension allows visitors to your online store to be able to swap different gallery images when they select a product variation. 
+Adding this feature will let visitors see different images of a product variation all in the same colour and style.
+
+This extension will allow the use of multiple images per variation, and simplifies it! How?
+Instead of upload one image per variation, upload all the variation images the product gallery and for each image CAPTION insert the slug of the variation.
+As quick and simple as that!
+
+
+== Installation ==
+
+1. Upload the entire `smart-variations-images` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Good luck with sales :)
+
+== Screenshots ==
+
+1. Add images to your Product Gallery
+2. Choose the images to be used and add the "slug" of the variation to the "Caption" field.
+3. Hides all other images that dont match the variation, and show only the default color, if no default is choosen, the gallery is hidden.
+4. On change the variation, images in the gallery also change to match the variation. The image in the gallery when click should show in the bigger image(above).
+
+== Changelog ==
+
+= 0.1 =
+Just released into the wild.
+
