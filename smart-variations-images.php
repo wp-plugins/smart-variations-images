@@ -30,7 +30,7 @@ if (!class_exists('woo_svi')):
         }
 
         function woo_svi_scripts() {
-            wp_enqueue_script('woo_svijs', plugin_dir_url(__FILE__) . 'assets/js/woo_svi.js', array('jquery'), null, true);
+            wp_enqueue_script('woo_svijs', plugin_dir_url(__FILE__) . 'assets/js/woo_svi.min.js', array('jquery'), null, true);
         }
 
     }
