@@ -1,8 +1,9 @@
 === Plugin Name ===
+Contributors: drosendo
 Donate link: http://www.rosendo.pt/
 Tags: WooCommerce, images variations, gallery
 Requires at least: 3.0.1
-Tested up to: 3.4
+Tested up to: 4.2
 Stable tag: 0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,6 +20,8 @@ Adding this feature will let visitors see different images of a product variatio
 This extension will allow the use of multiple images per variation, and simplifies it! How?
 Instead of upload one image per variation, upload all the variation images the product gallery and for each image CAPTION insert the slug of the variation.
 As quick and simple as that!
+
+Check out a demo at: http://www.rosendo.pt/produto/demo-smart-variations-images/
 
 
 == Installation ==
