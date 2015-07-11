@@ -5,7 +5,7 @@
   Plugin URI: http://www.rosendo.pt
   Description: This is a WooCommerce extension plugin, that allows the user to add any number of images to the product images gallery and be used as variable product variations images in a very simple and quick way, without having to insert images p/variation.
   Author: David Rosendo
-  Version: 0.2
+  Version: 0.2.1
   Author URI: http://www.rosendo.pt
  */
 
@@ -44,45 +44,45 @@ if (!class_exists('woo_svi')):
          * @return $form_fields, modified form fields
          */
         function woo_svi_field($form_fields, $post) {
+            if (isset($_POST['post_id']) && $_POST['post_id'] != '0') {
+                $att = wc_get_attribute_taxonomy_names();
+                if (!empty($att)) {
 
-            $att = wc_get_attribute_taxonomy_names();
-            if (!empty($att)) {
+                    $current = get_post_meta($post->ID, 'woosvi_slug', true);
 
-                $current = get_post_meta($post->ID, 'woosvi_slug', true);
+                    $html = "<select name='attachments[{$post->ID}][woosvi-slug]' id='attachments[{$post->ID}][woosvi-slug]'>";
 
-                $html = "<select name='attachments[{$post->ID}][woosvi-slug]' id='attachments[{$post->ID}][woosvi-slug]'>";
+                    $variations = true;
 
-                $variations = true;
+                    foreach ($att as $value) {
+                        $html .="<option value='' " . selected($current, '', false) . ">none</option>";
 
-                foreach ($att as $value) {
-                    $html .="<option value='' " . selected($current, '', false) . ">none</option>";
+                        $fabric_values = get_the_terms($_POST['post_id'], $value);
 
-                    $fabric_values = get_the_terms($_POST['post_id'], $value);
-
-                    if (!empty($fabric_values)) {
-                        foreach ($fabric_values as $fabric_value) {
-                            $html .="<option value='" . $fabric_value->slug . "' " . selected($current, $fabric_value->slug, false) . ">" . $fabric_value->name . "</option>";
+                        if (!empty($fabric_values)) {
+                            foreach ($fabric_values as $fabric_value) {
+                                $html .="<option value='" . $fabric_value->slug . "' " . selected($current, $fabric_value->slug, false) . ">" . $fabric_value->name . "</option>";
+                            }
+                        } else {
+                            $variations = false;
                         }
-                    } else {
-                        $variations = false;
+                    }
+
+                    $html .='</select>';
+
+                    if ($variations) {
+                        $form_fields['woosvi-slug'] = array(
+                            'label' => 'Variation Slug',
+                            'input' => 'html',
+                            'html' => $html,
+                            'application' => 'image',
+                            'exclusions' => array('audio', 'video'),
+                            'helps' => 'Choose the variation Slug',
+                        );
                     }
                 }
-
-                $html .='</select>';
-
-                if ($variations) {
-                    $form_fields['woosvi-slug'] = array(
-                        'label' => 'Variation Slug',
-                        'input' => 'html',
-                        'html' => $html,
-                        'application' => 'image',
-                        'exclusions' => array('audio', 'video'),
-                        'helps' => 'Choose the variation Slug',
-                    );
-
-                    return $form_fields;
-                }
             }
+            return $form_fields;
         }
 
         /**

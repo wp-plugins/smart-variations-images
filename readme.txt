@@ -4,7 +4,7 @@ Donate link: http://www.rosendo.pt/
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 0.2
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ Take a look at the Screenshots section on how to work with it!
 4. On change the variation, images in the gallery also change to match the variation. The image in the gallery when click should show in the bigger image(above).
 
 == Changelog ==
+
+= 0.2.1 =
+Fixed Warning message from appearing if WP_DEBUG was true preventing images from showing.
 
 = 0.2 =
 No longer use of caption field for Variation, new field has been added to replace the caption.
