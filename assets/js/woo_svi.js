@@ -7,7 +7,7 @@ if (!WOOSVI) {
 }
 WOOSVI.isLoaded = false;
 WOOSVI.STARTS = function ($) {
-    return{NAME: "Application initialize module", VERSION: 1.3, init: function () {
+    return{NAME: "Application initialize module", VERSION: 0.2, init: function () {
             this.loadInits();
             this.galleryProduct();
             this.galleryDefault()
@@ -26,6 +26,12 @@ WOOSVI.STARTS = function ($) {
             })
         }, galleryDefault: function () {
             var $primary, $color, str, count, $select;
+            var img = $("div.images img:eq(0)");
+            var link = $("div.images a.zoom:eq(0)");
+            var o_src = $(img).attr("data-o_src");
+            var o_title = $(img).attr("data-o_title");
+            var o_href = $(link).attr("data-o_href");
+            $('.variations select').bind('change');
             $select = $(".variations select");
             $primary = $select.val();
             if (typeof $primary !== "undefined") {
@@ -33,7 +39,7 @@ WOOSVI.STARTS = function ($) {
                 $("div.images div.thumbnails a").each(function (i, v) {
                     $(this).find("img").removeClass("current_p_thumb");
                     str = $(this).find("img").data("woovsi").toLowerCase();
-                    if (str === $primary) {
+                    if (str === $primary && str!=='') {
                         $(this).show();
                         if (count === 1) {
                             $(this).find("img").addClass("current_p_thumb");
@@ -44,16 +50,19 @@ WOOSVI.STARTS = function ($) {
                     }
                 })
             }
-            var img = $("div.images img:eq(0)");
-            var link = $("div.images a.zoom:eq(0)");
-            var o_src = $(img).attr("data-o_src");
-            var o_title = $(img).attr("data-o_title");
-            var o_href = $(link).attr("data-o_href");
-            $select.click(function (e) {
-                if (e.target.tagName === "OPTION") {
-                    $("div.images img:eq(0)").fadeOut("fast");
+
+            $('form').on('change', '.variations select', function (e) {
+
+
+
+                $color = $('.variations select').val();
+                if ($color !== '' && $('a>img[data-woovsi="' + $color + '"]').length > 0) {
+
                     count = 1;
-                    $color = e.target.value;
+                    $("div.images img:eq(0)").fadeOut("fast");
+
+
+
                     $("div.images div.thumbnails a").each(function (i, v) {
                         var strColor = $(this).find("img").data("woovsi").toLowerCase();
                         if (strColor === $color) {
@@ -65,7 +74,7 @@ WOOSVI.STARTS = function ($) {
                                 var variation = {image_src: image_src, image_link: image_link, image_title: image_title};
                                 setTimeout(function () {
                                     WOOSVI.STARTS.swap_image(variation)
-                                }, 50);
+                                }, 100);
                                 count = count + 1
                             }
                             $(this).show()

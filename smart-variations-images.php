@@ -5,7 +5,7 @@
   Plugin URI: http://www.rosendo.pt
   Description: This is a WooCommerce extension plugin, that allows the user to add any number of images to the product images gallery and be used as variable product variations images in a very simple and quick way, without having to insert images p/variation.
   Author: David Rosendo
-  Version: 0.2.1
+  Version: 0.2.2
   Author URI: http://www.rosendo.pt
  */
 
