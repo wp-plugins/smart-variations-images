@@ -4,7 +4,7 @@ Donate link: http://www.rosendo.pt/
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.0
+Stable tag: 0.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,10 +22,6 @@ Instead of upload one image per variation, upload all the variation images the p
 As quick and simple as that!
 
 Check out a demo at: http://www.rosendo.pt/en/product/demo-smart-variations-images/
-
-Please give your review!
-
-IF you like the plugin donate!
 
 Take a look at the Screenshots section on how to work with it!
 
@@ -47,8 +43,6 @@ Take a look at the Screenshots section on how to work with it!
 4. On change the variation, images in the gallery also change to match the variation. The image in the gallery when click should show in the bigger image(above).
 
 == Changelog ==
-= 1.0 =
-This is a big release. Fixed flickering of images when swaping images. Added a new option for Lens Zoom, activate this option in WooCommerce > Configuration > Products Tab > Smart Variations Images
 
 = 0.2.2 =
 Fixed issue where variation would not chagne in Chrome, also if no image variation exist, dont change image.
