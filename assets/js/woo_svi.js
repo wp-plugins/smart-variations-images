@@ -10,24 +10,32 @@ WOOSVI.STARTS = function ($) {
     return{NAME: "Application initialize module", VERSION: 0.2, init: function () {
             this.loadInits();
             this.galleryProduct();
-            this.galleryDefault()
+            this.galleryDefault();
+            this.imgGal();
         }, loadInits: function () {
         }, galleryProduct: function () {
-            $(".thumbnails a.zoom[data-rel^='prettyPhoto']").unbind("click");
-            $(".thumbnails a.zoom").click(function (e) {
-                e.preventDefault();
-                $(".thumbnails .zoom img").removeClass("current_p_thumb");
+            $("div.woosvi_images .thumbnails a[rel^='prettyPhoto']").unbind('click').on('click', function (event) {
+                event.preventDefault();
+            });
+            $(".thumbnails a").on('click', function (event) {
+                event.preventDefault();
+                $(".thumbnails img").removeClass("current_p_thumb");
                 $(this).find("img").addClass("current_p_thumb");
                 var photo_fullsize = $(this).attr("href");
-                $(".woocommerce-main-image img").attr("src", photo_fullsize)
+                $(".woocommerce-main-image img").attr("src", photo_fullsize);
+                if ($("div.woosvi_images.woosvilens").length > 0)
+                    WOOSVI.STARTS.imgGalreset(photo_fullsize);
             });
-            $(".woocommerce-main-image").click(function (e) {
-                e.preventDefault()
-            })
-        }, galleryDefault: function () {
+
+        },
+        galleryDefault: function () {
             var $primary, $color, str, count, $select;
-            var img = $("div.images img:eq(0)");
-            var link = $("div.images a.zoom:eq(0)");
+
+            var imgHeight = $("div.woosvi_images img:eq(0)").height() + 'px';
+            var imgWidth = $("div.woosvi_images img:eq(0)").width() + 'px';
+            $('a.woocommerce-main-image').css('display', 'inline-block').height(imgHeight).width(imgWidth);
+            var img = $("div.woosvi_images img:eq(0)");
+            var link = $("div.woosvi_images a:eq(0)");
             var o_src = $(img).attr("data-o_src");
             var o_title = $(img).attr("data-o_title");
             var o_href = $(link).attr("data-o_href");
@@ -36,10 +44,10 @@ WOOSVI.STARTS = function ($) {
             $primary = $select.val();
             if (typeof $primary !== "undefined") {
                 count = 1;
-                $("div.images div.thumbnails a").each(function (i, v) {
+                $("div.woosvi_images div.thumbnails a").each(function (i, v) {
                     $(this).find("img").removeClass("current_p_thumb");
                     str = $(this).find("img").data("woovsi").toLowerCase();
-                    if (str === $primary && str!=='') {
+                    if (str === $primary && str !== '') {
                         $(this).show();
                         if (count === 1) {
                             $(this).find("img").addClass("current_p_thumb");
@@ -53,17 +61,13 @@ WOOSVI.STARTS = function ($) {
 
             $('form').on('change', '.variations select', function (e) {
 
-
-
                 $color = $('.variations select').val();
                 if ($color !== '' && $('a>img[data-woovsi="' + $color + '"]').length > 0) {
 
                     count = 1;
-                    $("div.images img:eq(0)").fadeOut("fast");
+                    $("div.woosvi_images img:eq(0)").fadeOut("fast");
 
-
-
-                    $("div.images div.thumbnails a").each(function (i, v) {
+                    $("div.woosvi_images div.thumbnails a").each(function (i, v) {
                         var strColor = $(this).find("img").data("woovsi").toLowerCase();
                         if (strColor === $color) {
                             if (count === 1) {
@@ -84,9 +88,10 @@ WOOSVI.STARTS = function ($) {
                     })
                 }
             })
-        }, swap_image: function (variation) {
-            var img = $("div.images img:eq(0)");
-            var link = $("div.images a.zoom:eq(0)");
+        },
+        swap_image: function (variation) {
+            var img = $("div.woosvi_images img:eq(0)");
+            var link = $("div.woosvi_images a:eq(0)");
             var o_src = $(img).attr("data-o_src");
             var o_title = $(img).attr("data-o_title");
             var o_href = $(link).attr("data-o_href");
@@ -108,8 +113,20 @@ WOOSVI.STARTS = function ($) {
             $(img).attr("alt", variation_title);
             $(link).attr("href", variation_link + "?" + timestamp);
             $(link).attr("title", variation_title);
-            $("div.images img:eq(0)").fadeIn()
-        }}
+            $("div.woosvi_images img:eq(0)").fadeIn();
+            if ($("div.woosvi_images.woosvilens").length > 0)
+                WOOSVI.STARTS.imgGalreset(variation_image);
+        },
+        imgGal: function () {
+            if ($("div.woosvi_images.woosvilens").length > 0)
+                $("div.woosvi_images img:eq(0)").elevateZoom({zoomType: "lens", lensShape: "round", lensSize: 200, galleryActiveClass: "current_p_thumb", gallery: "div.woosvi_images div.thumbnails"});
+        },
+        imgGalreset: function (variation_image) {
+            var ez = $("div.woosvi_images img:eq(0)").data('elevateZoom');
+
+            ez.swaptheimage(variation_image, variation_image);
+        }
+    }
 }(jQuery);
 jQuery(document).ready(function () {
     WOOSVI.STARTS.init()

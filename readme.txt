@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: drosendo
-Donate link: http://www.rosendo.pt/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=david%40rosendo%2ept&lc=PT&item_name=Smart%20Variations%20Images&item_number=woosvi&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.0.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ Check out a demo at: http://www.rosendo.pt/en/product/demo-smart-variations-imag
 
 Please give your review!
 
-IF you like the plugin donate!
+If you like the plugin donate!
 
 Take a look at the Screenshots section on how to work with it!
 
@@ -45,8 +45,15 @@ Take a look at the Screenshots section on how to work with it!
 2. Choose the images to be used and select the "slug" of the variation in the "Variation Slug" field.
 3. Hides all other images that dont match the variation, and show only the default color, if no default is choosen, the gallery is hidden.
 4. On change the variation, images in the gallery also change to match the variation. The image in the gallery when click should show in the bigger image(above).
+4. Lens Zoom in action (activate it in WooCommerce > Configuration > Products Tab > Smart Variations Images)
 
 == Changelog ==
+
+= 1.1 =
+* Stable Version
+* Fixed flickering when swapping images
+* Added Lens Zoom Option (activate it in WooCommerce > Configuration > Products Tab > Smart Variations Images)
+
 = 1.0.1 =
 Revert State, missing files to commit. working version.
 
@@ -65,4 +72,3 @@ Javascript will search for new tag and loop the gallery.
 
 = 0.1 =
 Just released into the wild.
-

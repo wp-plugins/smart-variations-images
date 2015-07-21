@@ -1,0 +1,29 @@
+.woocommerce #content div.product div.woosvi_images, .woocommerce div.product div.woosvi_images, .woocommerce-page #content div.product div.woosvi_images, .woocommerce-page div.product div.woosvi_images {
+    float: left;
+    width: 48%;
+}
+.woocommerce div.product div.woosvi_images img {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+}
+.woocommerce div.product div.woosvi_images div.thumbnails {
+    padding-top: 1em;
+}
+.woosvi_images .thumbnails {
+    margin-left: 0px;
+}
+.current_p_thumb {
+    border: 1px solid #3c3c3b;
+    margin-top: -2px !important;
+}
+.woocommerce #content div.product div.thumbnails a,
+.woocommerce div.product div.thumbnails a,
+.woocommerce-page #content div.product div.thumbnails a,
+.woocommerce-page div.product div.thumbnails a {
+    float: left;
+    width: 30.75%;
+    margin-right: 2.5%;
+    margin-bottom: 1em;
+}
