@@ -14,6 +14,10 @@
 .woosvi_images .thumbnails {
     margin-left: 0px;
 }
+.woosvi_images .thumbnails.hidden {
+    display: none;
+    visibility: hidden;
+}
 .current_p_thumb {
     border: 1px solid #3c3c3b;
     margin-top: -2px !important;
@@ -27,3 +31,4 @@
     margin-right: 2.5%;
     margin-bottom: 1em;
 }
+

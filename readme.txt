@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: drosendo
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=david%40rosendo%2ept&lc=PT&item_name=Smart%20Variations%20Images&item_number=woosvi&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+Donate link: https://goo.gl/EPQAsA
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,10 @@ Take a look at the Screenshots section on how to work with it!
 4. Lens Zoom in action (activate it in WooCommerce > Configuration > Products Tab > Smart Variations Images)
 
 == Changelog ==
+
+= 1.2 =
+* Added option to prevent conflit with other plugins that maybe Removing/Adding action woocommerce_before_single_product_summary and woocommerce_product_thumbnails to insert their own gallery.
+* User can choose to "Enable WooCommerce default product image", SVI will work but may see some flickering when images change, this option is deactivated by default.
 
 = 1.1 =
 * Stable Version
