@@ -4,7 +4,7 @@ Donate link: https://goo.gl/EPQAsA
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,11 @@ Take a look at the Screenshots section on how to work with it!
 4. Lens Zoom in action (activate it in WooCommerce > Configuration > Products Tab > Smart Variations Images)
 
 == Changelog ==
+
+= 1.2.1 =
+* Bug fixed, if user has multiple variations and is not using one of them, variation slug in the image would not show up.
+* Added, when user clicks "Clear Selection", update gallery.
+* Speacial thank to @max_Q, for reporting issue and supplying some solution.
 
 = 1.2 =
 * Added option to prevent conflit with other plugins that maybe Removing/Adding action woocommerce_before_single_product_summary and woocommerce_product_thumbnails to insert their own gallery.
