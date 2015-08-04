@@ -4,7 +4,7 @@
   Plugin URI: http://www.rosendo.pt
   Description: This is a WooCommerce extension plugin, that allows the user to add any number of images to the product images gallery and be used as variable product variations images in a very simple and quick way, without having to insert images p/variation.
   Author: David Rosendo
-  Version: 1.2.1
+  Version: 1.3
   Author URI: http://www.rosendo.pt
  */
 
@@ -60,6 +60,7 @@ if ( !class_exists( 'woo_svi' ) ):
 					$this,
 					'remove_gallery_and_product_images'
 				) );
+				add_action( 'wp_print_scripts', array( $this, 'localize_script' ), 5 );
 			} else {
 				add_action( 'admin_notices', array(
 					$this,
@@ -99,7 +100,7 @@ if ( !class_exists( 'woo_svi' ) ):
 				$settings_slider[] = array(
 					'name' => __( 'Smart Variations Images', 'woosvi' ),
 					'type' => 'title',
-					'desc' => __( 'The following options are used to configure SVI', 'woosvi-text' ),
+					'desc' => __( 'The following options are used to configure SVI<br> If you like this plugin please review it <a href="https://wordpress.org/support/view/plugin-reviews/smart-variations-images" target="_blank">here</a> or make a donation <a href="https://goo.gl/EPQAsA" target="_blank">here</a> to help keep this plugin <strong>free</strong> and <strong>growing</strong> with new features.', 'woosvi-text' ),
 					'id' => 'woosvi'
 				);
 
@@ -115,12 +116,13 @@ if ( !class_exists( 'woo_svi' ) ):
 
 				$settings_slider[] = array(
 					'name' => __( 'Enable WooCommerce default product image', 'woosvi-text' ),
-					'desc_tip' => __( '<strong>Note:</strong> some image flickering may occour.<br><strong>Note:</strong> Lens Zoom Option will not work.', 'woosvi-text' ),
+					'desc_tip' => __( '<strong>Note:</strong> Lens Zoom Option will not work.', 'woosvi-text' ),
 					'id' => 'woosvi_defaultprod',
 					'type' => 'checkbox',
 					'css' => 'min-width:300px;',
 					'desc' => __( '', 'woosvi-text' )
 				);
+				
 
 				$settings_slider[] = array(
 					'type' => 'sectionend',
@@ -196,6 +198,19 @@ if ( !class_exists( 'woo_svi' ) ):
 			wp_enqueue_style( 'woo_svicss', plugin_dir_url( __FILE__ ) . 'assets/css/woo_svi.css', array(
 				$key_woocommerce
 					), null );
+
+
+			wp_deregister_script( 'wc-add-to-cart-variation' );
+		}
+
+		function localize_script() {
+			$handle = 'woo_svijs';
+			$data = array(
+				'i18n_no_matching_variations_text' => esc_attr__( 'Sorry, no products matched your selection. Please choose a different combination.', 'woocommerce' ),
+				'i18n_unavailable_text' => esc_attr__( 'Sorry, this product is unavailable. Please choose a different combination.', 'woocommerce' ),
+			);
+			$name = str_replace( '-', '_', $handle ) . '_params';
+			wp_localize_script( $handle, $name, apply_filters( $name, $data ) );
 		}
 
 		/**

@@ -4,7 +4,7 @@ Donate link: https://goo.gl/EPQAsA
 Tags: WooCommerce, images variations, gallery, woocommerce variations, woocommerce variations images, woocommerce images
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.2.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,7 @@ As quick and simple as that!
 
 Check out a demo at: http://www.rosendo.pt/en/product/demo-smart-variations-images/
 
-Please give your review!
+<strong>Please give your review!</strong>
 
 If you like the plugin donate!
 
@@ -48,6 +48,10 @@ Take a look at the Screenshots section on how to work with it!
 4. Lens Zoom in action (activate it in WooCommerce > Configuration > Products Tab > Smart Variations Images)
 
 == Changelog ==
+
+= 1.3 =
+* Complete reconstrution of JS to better handle changes.
+* Fixed, no more flickering on "WooCommerce default product image"
 
 = 1.2.1 =
 * Bug fixed, if user has multiple variations and is not using one of them, variation slug in the image would not show up.
