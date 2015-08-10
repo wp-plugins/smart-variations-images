@@ -216,8 +216,8 @@
 
                     if (any_set) {
 
-                        /*if ($reset_variations.css('visibility') === 'hidden')
-                         $reset_variations.css('visibility', 'visible').hide().fadeIn();*/
+                        if ($reset_variations.css('visibility') === 'hidden')
+                         $reset_variations.css('visibility', 'visible').hide().fadeIn();
 
                     } else {
 
