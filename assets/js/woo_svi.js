@@ -1,7 +1,3 @@
-/*!
- * Variations Plugin
- */
-;
 (function ($, window, document, undefined) {
 
     $.fn.wc_variation_form = function () {
@@ -220,8 +216,8 @@
 
                     if (any_set) {
 
-                        if ($reset_variations.css('visibility') === 'hidden')
-                            $reset_variations.css('visibility', 'visible').hide().fadeIn();
+                        /*if ($reset_variations.css('visibility') === 'hidden')
+                         $reset_variations.css('visibility', 'visible').hide().fadeIn();*/
 
                     } else {
 
@@ -237,35 +233,35 @@
                 .on('reset_image', function (event) {
 
                     var $product = $(this).closest('.product'),
-                            $product_img = $product.find('div.woosvi_images img:eq(0),div.images img:eq(0)'),
+                            $product_img = $product.find('div.woosvi_images img:eq(0), div.images img:eq(0)'),
                             $product_link = $product.find('div.woosvi_images a.zoom:eq(0),div.images a.zoom:eq(0)'),
                             o_src = $product_img.attr('data-o_src'),
                             o_title = $product_img.attr('data-o_title'),
                             o_alt = $product_img.attr('data-o_alt'),
                             o_href = $product_link.attr('data-o_href');
-                  
-                        if (o_src !== undefined) {
-                            $product_img
-                                    .attr('src', o_src);
-                        }
 
-                        if (o_href !== undefined) {
-                            $product_link
-                                    .attr('href', o_href);
-                        }
+                    if (o_src !== undefined) {
+                        $product_img
+                                .attr('src', o_src);
+                    }
 
-                        if (o_title !== undefined) {
-                            $product_img
-                                    .attr('title', o_title);
-                            $product_link
-                                    .attr('title', o_title);
-                        }
+                    if (o_href !== undefined) {
+                        $product_link
+                                .attr('href', o_href);
+                    }
 
-                        if (o_alt !== undefined) {
-                            $product_img
-                                    .attr('alt', o_alt);
-                        }
-                    
+                    if (o_title !== undefined) {
+                        $product_img
+                                .attr('title', o_title);
+                        $product_link
+                                .attr('title', o_title);
+                    }
+
+                    if (o_alt !== undefined) {
+                        $product_img
+                                .attr('alt', o_alt);
+                    }
+
                     WOOSVI.STARTS.galleryPopulate();
 
                     if ($("div.woosvi_images.woosvilens").length > 0 && o_href !== undefined)
@@ -356,15 +352,46 @@
 
                 // Show single variation details (price, stock, image)
                 .on('found_variation', function (event, variation) {
+                    var $woosvi;
 
-                    WOOSVI.STARTS.galleryDefault(variation);  //WOO_SVI run gallery swap image
+                    $woosvi = WOOSVI.STARTS.galleryDefault(variation);  //WOO_SVI run gallery swap image
 
                     var $variation_form = $(this),
-                            $product = $(this).closest('.product');
+                            $product = $(this).closest('.product'),
+                            $product_img = $product.find('div.woosvi_images img:eq(0),div.images img:eq(0)'),
+                            $product_link = $product.find('div.woosvi_images a:eq(0),div.images a.zoom:eq(0)'),
+                            o_src = $product_img.attr('data-o_src'),
+                            o_title = $product_img.attr('data-o_title'),
+                            o_alt = $product_img.attr('data-o_alt'),
+                            o_href = $product_link.attr('data-o_href'),
+                            variation_image = variation.image_src,
+                            variation_link = variation.image_link,
+                            variation_title = variation.image_title,
+                            variation_alt = variation.image_alt;
+
+                    if (!$woosvi) {
+                        if (variation_image && variation_image.length > 1) {
+                            $product_img
+                                    .attr('src', variation_image)
+                                    .attr('alt', variation_alt)
+                                    .attr('title', variation_title);
+                            $product_link
+                                    .attr('href', variation_link)
+                                    .attr('title', variation_title);
+                        } else {
+                            $product_img
+                                    .attr('src', o_src)
+                                    .attr('alt', o_alt)
+                                    .attr('title', o_title);
+                            $product_link
+                                    .attr('href', o_href)
+                                    .attr('title', o_title);
+                        }
+                        if ($("div.woosvi_images.woosvilens").length > 0)
+                            WOOSVI.STARTS.imgGalreset(variation_image);
+                    }
                     $variation_form.find('.variations_button').show();
                     $variation_form.find('.single_variation').html(variation.price_html + variation.availability_html);
-
-
 
                     var $single_variation_wrap = $variation_form.find('.single_variation_wrap'),
                             $sku = $product.find('.product_meta').find('.sku'),
@@ -453,7 +480,7 @@ if (!WOOSVI) {
 }
 WOOSVI.isLoaded = false;
 WOOSVI.STARTS = function ($) {
-    return{NAME: "Application initialize module", VERSION: 0.5, init: function () {
+    return{NAME: "Application initialize module", VERSION: 0.6, init: function () {
             this.loadInits();
             this.imgGal();
         }, loadInits: function () {
@@ -478,7 +505,7 @@ WOOSVI.STARTS = function ($) {
             var $primary, str, count;
 
             $primary = $('div.woosvi_images>a>img,div.images>a>img').data('woovsi');
-  
+
             if (typeof $primary !== "undefined") {
                 count = 1;
                 $("div.woosvi_images div.thumbnails a,div.images div.thumbnails a").each(function (i, v) {
@@ -504,6 +531,7 @@ WOOSVI.STARTS = function ($) {
         },
         galleryDefault: function ($elm) {
             var $color, count;
+            var $woosvi = false;
             var imgHeight = $("div.woosvi_images img:eq(0),div.images img:eq(0)").height() + 'px';
             var imgWidth = $("div.woosvi_images img:eq(0),div.images img:eq(0)").width() + 'px';
             $('a.woocommerce-main-image').css('display', 'inline-block').height(imgHeight).width(imgWidth);
@@ -520,13 +548,14 @@ WOOSVI.STARTS = function ($) {
 
                     count = 1;
 
-                    if ($color !== $("div.woosvi_images img:eq(0),div.images img:eq(0)").attr('title').toLowerCase())
-                        $("div.woosvi_images img:eq(0),div.images img:eq(0)").fadeOut("fast");
+                    /*if ($color !== $("div.woosvi_images img:eq(0),div.images img:eq(0)").attr('title').toLowerCase())
+                     $("div.woosvi_images img:eq(0),div.images img:eq(0)").fadeOut("fast");*/
 
                     $("div.woosvi_images div.thumbnails a,div.images div.thumbnails a").each(function (i, v) {
                         var strColor = $(this).find("img").data("woovsi").toLowerCase();
                         $(this).removeClass("last").removeClass("first");
                         if (strColor === $color) {
+                            $woosvi = true;
                             if (count === 1) {
                                 $(this).addClass("first");
                                 var image_src = $(this).attr("href");
@@ -539,7 +568,7 @@ WOOSVI.STARTS = function ($) {
 
                                 count = count + 1;
                             }
-                            $(this).show()
+                            $(this).show();
                         } else {
                             $(this).find("img").removeClass("current_p_thumb");
                             $(this).hide();
@@ -547,7 +576,7 @@ WOOSVI.STARTS = function ($) {
                     })
                 }
             })
-
+            return $woosvi;
         },
         swap_image: function (variation) {
             var img = $("div.woosvi_images img:eq(0),div.images img:eq(0)");
@@ -568,13 +597,13 @@ WOOSVI.STARTS = function ($) {
                 $(link).attr("data-o_href", $(link).attr("href"))
             }
             $(img).attr("data-woovsi", variation_title);
-            var timestamp = new Date().getTime();
-            $(img).attr("src", variation_image + "?" + timestamp);
+
+            $(img).attr("src", variation_image);
             $(img).attr("title", variation_title);
             $(img).attr("alt", variation_title);
-            $(link).attr("href", variation_link + "?" + timestamp);
+            $(link).attr("href", variation_link);
             $(link).attr("title", variation_title);
-            $("div.woosvi_images img:eq(0),div.images img:eq(0)").fadeIn();
+            //$("div.woosvi_images img:eq(0),div.images img:eq(0)").fadeIn();
             if ($("div.woosvi_images.woosvilens").length > 0)
                 WOOSVI.STARTS.imgGalreset(variation_image);
         },
