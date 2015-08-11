@@ -51,9 +51,10 @@ Themes that follow the default WooCommerce implementation will usually work with
 1. Assign your product Atrributes and click "Save atributes"
 2. Create the variations you need, and click "Publish" or "Save as draft"
 3. Go to Product Gallery and upload/choose the images you are going to use
-4. For each image assing the slugs to be used for the variation images swap.
-5. Pusblih you product
+4. For each image assing the slugs to be used for the variation images swap
+5. Publish you product
 
+You can skip steps 1 and 2 if your product is already setup with Atributes and Variations.
 
 == Screenshots ==
 
