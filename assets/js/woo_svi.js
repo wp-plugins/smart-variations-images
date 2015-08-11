@@ -39,6 +39,7 @@
         this.find('.reset_variations').unbind('click');
         this.find('.variations select').unbind('change focusin');
 
+        WOOSVI.STARTS.imgGal();  //START IMAGE GAL
         WOOSVI.STARTS.galleryPopulate();  //WOO_SVI SHOW ONLY CORRESPONDING IMAGES
         WOOSVI.STARTS.galleryProduct();  //WOO_SVI SWITCH PRMARY IMAGE
         // Bind events
@@ -217,7 +218,7 @@
                     if (any_set) {
 
                         if ($reset_variations.css('visibility') === 'hidden')
-                         $reset_variations.css('visibility', 'visible').hide().fadeIn();
+                            $reset_variations.css('visibility', 'visible').hide().fadeIn();
 
                     } else {
 
@@ -480,7 +481,7 @@ if (!WOOSVI) {
 }
 WOOSVI.isLoaded = false;
 WOOSVI.STARTS = function ($) {
-    return{NAME: "Application initialize module", VERSION: 0.6, init: function () {
+    return{NAME: "Application initialize module", VERSION: 0.7, init: function () {
             this.loadInits();
             this.imgGal();
         }, loadInits: function () {
@@ -621,4 +622,3 @@ WOOSVI.STARTS = function ($) {
 jQuery(document).ready(function () {
     WOOSVI.STARTS.init()
 });
-
