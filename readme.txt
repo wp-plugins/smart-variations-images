@@ -39,6 +39,22 @@ Take a look at the Screenshots section on how to work with it!
 5. Assing the slugs to be used for the variation images for each of the image and save.
 6. Good luck with sales :)
 
+
+== Frequently Asked Questions ==
+
+= The plugin doesnt work with my theme =
+
+Themes that follow the default WooCommerce implementation will usually work with this plugin. However, some themes use an unorthodox method to add their own lightbox/slider, which breaks the hooks this plugin needs.
+
+= How do I configure it to work? =
+
+1. Assign your product Atrributes and click "Save atributes"
+2. Create the variations you need, and click "Publish" or "Save as draft"
+3. Go to Product Gallery and upload/choose the images you are going to use
+4. For each image assing the slugs to be used for the variation images swap.
+5. Pusblih you product
+
+
 == Screenshots ==
 
 1. Add images to your Product Gallery
